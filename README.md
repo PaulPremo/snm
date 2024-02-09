@@ -19,7 +19,7 @@ App spotify
 
 - ~~Registrazione utente (email, nome utente, password, preferenze musicali,  gruppi musicali preferiti)~~
 - ~~Creazione di un suo profilo all'interno del "social network"~~
-- Gli utenti devono poter: modificare i propri dati/preferenze (creare/modificare/cancellare liste musicali contenenti un elenco di canzoni) e volendo cancellarsi.
+- ~~Gli utenti devono poter: modificare i propri dati/preferenze (creare/modificare/cancellare liste musicali contenenti un elenco di canzoni) e volendo cancellarsi.~~
 - ~~Elenco delle canzoni viene acquisito tramite le API REST di [Spotify](https:////developer.spotify.com/documentation/web-api/reference)~~
 - Per ogni canzone vanno gestite: titolo, cantante, genere, durata e anno di pubblicazione
 - ~~Per ogni Playlist un utente deve inserire un titolo, una descrizione testuale e uno o più tag descrittivi~~

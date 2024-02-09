@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+        
+        .container {
+            padding-top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .card {
+            border: 1px solid #dddfe2; /* Colore grigio chiaro per il bordo */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+        }
+        
+        .card-header {
+            background-color: #3b5998; /* Colore blu di Facebook */
+            color: #fff;
+            border-bottom: none;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .card-body {
+            background-color: #fff;
+        }
+        
+        .form-label {
+            color: #3b5998;
+        }
+        
+        .btn-primary {
+            background-color: #1877f2; /* Colore blu di Facebook */
+            border-color: #1877f2; /* Colore blu di Facebook */
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background-color: #166fe5; /* Colore blu scuro al passaggio del mouse */
+            border-color: #166fe5; /* Colore blu scuro al passaggio del mouse */
+        }
+        
+        .alert-danger {
+            color: #721c24; /* Colore rosso per gli avvisi di errore */
+            background-color: #f8d7da; /* Colore di sfondo rosso chiaro */
+            border-color: #f5c6cb; /* Colore del bordo rosso */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">Login Form</div>
+        <div class="card-body">
+            <form action="/auth/login" method="POST">
+                <div class="mb-3">
+                    <label for="email-reg" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email-reg" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password-reg" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password-reg" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{#if message }}
+    <h4 class="alert alert-danger mt-4">{{message}}</h4>
+{{/if}}
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Search</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Stile generale della pagina */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #3b5998; /* Colore blu di Facebook */
+}
+
+.form-group label {
+    color: #3b5998;
+}
+
+/* Stile dei pulsanti */
+.btn-primary {
+    background-color: #1877f2; /* Colore blu di Facebook */
+    border-color: #1877f2; /* Colore blu di Facebook */
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #166fe5; /* Colore blu scuro al passaggio del mouse */
+    border-color: #166fe5; /* Colore blu scuro al passaggio del mouse */
+}
+
+.btn-success {
+    background-color: #42b72a; /* Colore verde di Facebook */
+    border-color: #42b72a; /* Colore verde di Facebook */
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #36a420; /* Colore verde scuro al passaggio del mouse */
+    border-color: #36a420; /* Colore verde scuro al passaggio del mouse */
+}
+
+/* Stile dei risultati della ricerca */
+.card {
+    border: 1px solid #dddfe2; /* Colore grigio chiaro per il bordo */
+    border-radius: 10px;
+}
+
+.card-title {
+    color: #3b5998;
+}
+
+.card-text {
+    color: #333;
+}
+    </style>
+
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Playlist Search</h1>
+
+    <form id="searchForm" class="mb-4">
+        <div class="form-group">
+            <label for="searchInput">Search:</label>
+            <input type="text" id="searchInput" name="searchInput" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="searchType">Search By:</label>
+            <select id="searchType" name="searchType" class="form-control">
+                <option value="name">Name</option>
+                <option value="tag">Tag</option>
+                <option value="songName">Song Name</option>
+                <option value="songArtist">Song Artist</option>
+            </select>
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="searchPlaylist()">Search</button>
+    </form>
+
+    <div id="results">
+        <!-- Results will be displayed here -->
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    function fetchPlaylistData() {
+        // Replace the URL with your actual API endpoint
+        const apiUrl = 'http://localhost:3000/playlist';
+
+        return fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+    }
+
+    function getCookieValue(cookieName) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Controlla se il cookie inizia con il nome specificato
+            if (cookie.startsWith(cookieName + '=')) {
+                // Estrai e restituisci il valore del cookie
+                return cookie.substring(cookieName.length + 1);
+            }
+        }
+        // Restituisci null se il cookie non è stato trovato
+        return null;
+    }
+
+    async function searchPlaylist() {
+        const playlists = await fetchPlaylistData();
+
+        const user_email_cookie = decodeURIComponent(getCookieValue('email'));
+
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const searchType = document.getElementById('searchType').value;
+
+        const results = playlists.filter(playlist => {
+            if (playlist.public_playlist === "true") {
+                if (searchType === 'name' && playlist.name.toLowerCase().includes(searchInput)) {
+                    return true;
+                }
+                if (searchType === 'tag' && playlist.tags.toLowerCase().includes(searchInput)) {
+                    return true;
+                }
+                if (searchType === 'songName') {
+                    for (const track of playlist.tracks) {
+                        if (track.name.toLowerCase().includes(searchInput)) {
+                            return true;
+                        }
+                    }
+                }
+                if (searchType === 'songArtist') {
+                    for (const track of playlist.tracks) {
+                        if (track.artist.toLowerCase().includes(searchInput)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        });
+
+        displayResults(results);
+    }
+    const resultsContainer = document.getElementById('results');
+
+    function displayResults(results) {
+
+        resultsContainer.innerHTML = '';
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No matching playlists found.</p>';
+        } else {
+            results.forEach(playlist => {
+                const card = document.createElement('div');
+                card.className = 'card mt-3';
+
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+
+                const cardTitle = document.createElement('h5');
+                cardTitle.className = 'card-title';
+                cardTitle.textContent = playlist.name;
+
+                const tagList = document.createElement('p');
+                tagList.className = 'card-text';
+                tagList.innerHTML = `<strong>Tags:</strong> ${playlist.tags}`;
+
+                const descriptionPlaylist = document.createElement('p');
+                descriptionPlaylist.className = 'card-text';
+                descriptionPlaylist.innerHTML = `<strong>Description:</strong> ${playlist.description}`;
+
+                const songList = document.createElement('ul');
+                songList.className = 'list-group list-group-flush';
+
+                let totalDuration = 0;
+
+                playlist.tracks.forEach(track => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'list-group-item';
+
+                    const songInfo = document.createElement('div');
+                    songInfo.innerHTML = `<strong>Artist:</strong> ${track.artist},
+                                             <strong>Song:</strong> ${track.name},
+                                             <strong>Duration:</strong> ${msToTime(track.duration_ms)}`;
+
+                    const spotifyImage = document.createElement('img');
+                    spotifyImage.src = track.img_url;
+                    spotifyImage.alt = 'Spotify Image';
+                    spotifyImage.style.width = '50px'; // Adjust the size as needed
+
+                    const spotifyLink = document.createElement('a');
+                    spotifyLink.href = track.spotify_url;
+                    spotifyLink.target = '_blank';
+                    spotifyLink.textContent = 'Listen on Spotify';
+
+                    listItem.appendChild(songInfo);
+                    listItem.appendChild(spotifyImage);
+                    listItem.appendChild(spotifyLink);
+
+                    songList.appendChild(listItem);
+
+                    // Aggiungi la durata al totale
+                    totalDuration += track.duration_ms;
+                });
+
+                const cardFooter = document.createElement('div');
+                cardFooter.className = 'card-footer';
+
+                const saveButton = document.createElement('button');
+                saveButton.className = 'btn btn-success';
+                saveButton.textContent = 'Save Playlist';
+                saveButton.dataset.playlistId = playlist._id;
+
+                cardFooter.appendChild(saveButton);
+                cardFooter.innerHTML += `<span class="float-right"><strong>Total Duration:</strong> ${msToTime(totalDuration)}</span>`;
+
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(tagList);
+                cardBody.appendChild(descriptionPlaylist);
+                cardBody.appendChild(songList);
+
+                card.appendChild(cardBody);
+                card.appendChild(cardFooter);
+                resultsContainer.appendChild(card);
+            });
+        }
+    }
+
+    resultsContainer.addEventListener('click', (event) => {
+        const target = event.target;
+
+        // Verifica se il clic è avvenuto su un pulsante "Update" o "Delete"
+        if (target.classList.contains('btn-success')) {
+            const playlistId = target.dataset.playlistId;
+            console.log(`Save button clicked for playlist with ID ${playlistId}`);
+            savePlaylist(playlistId);
+        }
+    });
+
+    // Funzione per gestire l'aggiornamento della playlist
+    async function savePlaylist(playlistId) {
+        // Puoi implementare qui la logica per l'aggiornamento della playlist
+        console.log(`Updating playlist with ID ${playlistId}`);
+        //ID dell'utente
+        user_id_cookie = decodeURIComponent(getCookieValue('id_app'));
+        jsonValue  = user_id_cookie.replace(/^j:/, '');
+        const parsedValue = JSON.parse(jsonValue);
+        const playlist_array = []
+        playlist_array.push(playlistId)
+        console.log(playlist_array)
+        const url = 'http://localhost:3000/user/' + parsedValue
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json', // Specifica il tipo di contenuto JSON
+                // Altri eventuali header richiesti dal tuo server
+            }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Errore nella richiesta GET:', response.status);
+            }
+            return response.json(); // Se la risposta contiene dati JSON
+        }).then(data => {
+            console.log('Risposta del server:', data.playlist);
+            const old_playlist_array = Array.isArray(data.playlist) ? data.playlist : [];
+            console.log("Old array"+old_playlist_array)
+            if(old_playlist_array.includes(playlistId)){
+                alert("Playlist già salvata");
+                console.log("L'ID è presente nell'array.");
+            } else {
+                console.log("L'ID non è presente nell'array.");
+                const new_playlist_array = playlist_array.concat(old_playlist_array)
+                console.log("ARRAYYYYYYYYYYYYYYYYYYYYYYYYYY: "+new_playlist_array)
+
+                const dataToSend = {
+                    playlist: new_playlist_array
+                };
+                const url = 'http://localhost:3000/user/id/' + parsedValue
+                fetch(url, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json', // Specifica il tipo di contenuto JSON
+                        // Altri eventuali header richiesti dal tuo server
+                    },
+                    body: JSON.stringify(dataToSend) // Converte l'oggetto in una stringa JSON
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nella richiesta PATCH:', response.status);
+                    }
+                    return response.json(); // Se la risposta contiene dati JSON
+                }).then(data => {
+                    console.log('Risposta del server:', data);
+                    alert('Playlist saved!');
+                }).catch(error => {
+                    console.error(error);
+                });
+
+            }
+
+        }).catch(error => {
+            console.error(error);
+        });
+
+
+    }
+
+    function msToTime(duration) {
+        const minutes = Math.floor((duration / (1000 * 60)) % 60);
+        const seconds = Math.floor((duration / 1000) % 60);
+        return `${minutes}m ${seconds}s`;
+    }
+</script>
+
+</body>
+</html>

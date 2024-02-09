@@ -1,0 +1,243 @@
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+        
+        .container {
+            padding-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .card {
+            border: 1px solid #dddfe2; /* Colore grigio chiaro per il bordo */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        
+        .card-header {
+            background-color: #3b5998; /* Colore blu di Facebook */
+            color: #fff;
+            border-bottom: none;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .card-body {
+            background-color: #fff;
+        }
+        
+        .form-label {
+            color: #3b5998;
+        }
+        
+        .btn-primary {
+            background-color: #1877f2; /* Colore blu di Facebook */
+            border-color: #1877f2; /* Colore blu di Facebook */
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background-color: #166fe5; /* Colore blu scuro al passaggio del mouse */
+            border-color: #166fe5; /* Colore blu scuro al passaggio del mouse */
+        }
+        
+        .alert-danger {
+            color: #721c24; /* Colore rosso per gli avvisi di errore */
+            background-color: #f8d7da; /* Colore di sfondo rosso chiaro */
+            border-color: #f5c6cb; /* Colore del bordo rosso */
+        }
+    </style>
+
+<div class="container mt-4">
+    <div class="card" style="width: 80rem;">
+        <div class="card-header">Register Form</div>
+        <div class="card-body">
+            <form action="/auth/register" method="POST">
+                <div class="mb-3">
+                    <label for="name-reg" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name-reg" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email-reg" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email-reg" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password-reg" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password-reg" name="password">
+                </div>
+                <div class="mb-3">
+                    <label for="password-conf-reg" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="password-conf-reg" name="password_confirm">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlSelect2">Choose you musical genres</label>
+                    <select multiple class="form-select" type="genres" id="multiple-select-field" name="genres" data-placeholder="Choose anything">
+                        <option>acoustic</option>
+                        <option>afrobeat</option>
+                        <option>alt-rock</option>
+                        <option>alternative</option>
+                        <option>ambient</option>
+                        <option>anime</option>
+                        <option>black-metal</option>
+                        <option>bluegrass</option>
+                        <option>blues</option>
+                        <option>bossanova</option>
+                        <option>brazil</option>
+                        <option>breakbeat</option>
+                        <option>british</option>
+                        <option>cantopop</option>
+                        <option>chicago-house</option>
+                        <option>children</option>
+                        <option>chill</option>
+                        <option>classical</option>
+                        <option>club</option>
+                        <option>comedy</option>
+                        <option>country</option>
+                        <option>dance</option>
+                        <option>dancehall</option>
+                        <option>death-metal</option>
+                        <option>deep-house</option>
+                        <option>detroit-techno</option>
+                        <option>disco</option>
+                        <option>disney</option>
+                        <option>drum-and-bass</option>
+                        <option>dub</option>
+                        <option>dubstep</option>
+                        <option>edm</option>
+                        <option>electro</option>
+                        <option>electronic</option>
+                        <option>emo</option>
+                        <option>folk</option>
+                        <option>forro</option>
+                        <option>french</option>
+                        <option>funk</option>
+                        <option>garage</option>
+                        <option>german</option>
+                        <option>gospel</option>
+                        <option>goth</option>
+                        <option>grindcore</option>
+                        <option>groove</option>
+                        <option>grunge</option>
+                        <option>guitar</option>
+                        <option>happy</option>
+                        <option>hard-rock</option>
+                        <option>hardcore</option>
+                        <option>hardstyle</option>
+                        <option>heavy-metal</option>
+                        <option>hip-hop</option>
+                        <option>holidays</option>
+                        <option>honky-tonk</option>
+                        <option>house</option>
+                        <option>idm</option>
+                        <option>indian</option>
+                        <option>indie</option>
+                        <option>indie-pop</option>
+                        <option>industrial</option>
+                        <option>iranian</option>
+                        <option>j-dance</option>
+                        <option>j-idol</option>
+                        <option>j-pop</option>
+                        <option>j-rock</option>
+                        <option>jazz</option>
+                        <option>k-pop</option>
+                        <option>kids</option>
+                        <option>latin</option>
+                        <option>latino</option>
+                        <option>malay</option>
+                        <option>mandopop</option>
+                        <option>metal</option>
+                        <option>metal-misc</option>
+                        <option>metalcore</option>
+                        <option>minimal-techno</option>
+                        <option>movies</option>
+                        <option>mpb</option>
+                        <option>new-age</option>
+                        <option>new-release</option>
+                        <option>opera</option>
+                        <option>pagode</option>
+                        <option>party</option>
+                        <option>philippines-opm</option>
+                        <option>piano</option>
+                        <option>pop</option>
+                        <option>pop-film</option>
+                        <option>post-dubstep</option>
+                        <option>power-pop</option>
+                        <option>progressive-house</option>
+                        <option>psych-rock</option>
+                        <option>punk</option>
+                        <option>punk-rock</option>
+                        <option>r-n-b</option>
+                        <option>rainy-day</option>
+                        <option>reggae</option>
+                        <option>reggaeton</option>
+                        <option>road-trip</option>
+                        <option>rock</option>
+                        <option>rock-n-roll</option>
+                        <option>rockabilly</option>
+                        <option>romance</option>
+                        <option>sad</option>
+                        <option>salsa</option>
+                        <option>samba</option>
+                        <option>sertanejo</option>
+                        <option>show-tunes</option>
+                        <option>singer-songwriter</option>
+                        <option>ska</option>
+                        <option>sleep</option>
+                        <option>songwriter</option>
+                        <option>soul</option>
+                        <option>soundtracks</option>
+                        <option>spanish</option>
+                        <option>study</option>
+                        <option>summer</option>
+                        <option>swedish</option>
+                        <option>synth-pop</option>
+                        <option>tango</option>
+                        <option>techno</option>
+                        <option>trance</option>
+                        <option>trip-hop</option>
+                        <option>turkish</option>
+                        <option>work-out</option>
+                        <option>world-music</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="name-reg" class="form-label">Choose a playlist tag</label>
+                    <input name='tags' value='Queen,ACDC' class="form-control" id="playlistTags" autofocus>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{#if message }}
+    <h4 class="alert alert-danger mt-4">{{message}}</h4>
+{{/if}}
+<script src="https://unpkg.com/@yaireo/tagify"></script>
+<script src="https://unpkg.com/@yaireo/tagify@3.1.0/dist/tagify.polyfills.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+<script>
+        $( '#multiple-select-field' ).select2( {
+            theme: "bootstrap-5",
+            width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+            placeholder: $( this ).data( 'placeholder' ),
+            closeOnSelect: false,
+        } );
+</script>
+<script>
+    // The DOM element you wish to replace with Tagify
+    var input = document.querySelector('input[name=tags]');
+
+    // initialize Tagify on the above input node reference
+    new Tagify(input, {
+        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+    })
+</script>

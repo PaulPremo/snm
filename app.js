@@ -15,7 +15,7 @@ const routes_playlist = require('./routes/playlist.js');
 const secret = process.env.JWT_SECRET
 const cookieParser = require('cookie-parser');
 const exphbs = require('express-handlebars');
-const axios = require('axios');
+const axios = require('axios'); //
 
 const app = express();
 app.set('view engine', 'hbs')
@@ -137,6 +137,24 @@ app.post("/auth/register", async (req, res) => {
         })
     }
 
+    //validate email format
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var isEmailValid = emailPattern.test(email);
+    if (isEmailValid==false){
+        return res.render('register', {
+            message: 'L email deve avere un formato valido'
+        }); 
+    }
+
+    //validate password complexity and lenght
+    var passwordPattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/;
+    var isPasswordValid = passwordPattern.test(password);
+    if(isPasswordValid==false && password.length<=8 ){
+        return res.render('register', {
+            message: 'Inserire una password di lunghezza almeno 8 caratteri che abbia maiuscole e minuscole per la tua sicurezza! !'
+        });
+    }
+
     if (password !== password_confirm) {
         return res.render('register', {
             message: 'Le password non corrispondono!'
@@ -238,8 +256,7 @@ app.post("/auth/login", async (req, res) => {
                 res.cookie('genres', user.genres);
                 res.cookie('spotify_client_id', spotify_client_id);
                 res.cookie('spotify_client_secret', spotify_client_secret);
-                //res.render("home", {layout: 'index_auth', title: 'Home Page' });
-                //res.status(200).json({ message: "Login avvenuto con successo", user });
+
                 return res.redirect('/protected/home');
             } else {
                 console.log('Credenziali non valide');

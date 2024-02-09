@@ -1,0 +1,1213 @@
+<div class="container mt-4">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Create Playlist
+    </button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        Add Tracks to Playlist
+    </button>
+
+    <div id="results">
+        <!-- Results will be displayed here -->
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Playlist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container mt-4">
+                        <div class="card" style="width: 65rem;">
+                            <div class="card-header">Search tracks</div>
+                            <div class="card-body">
+                                <form id="searchForm">
+                                    <div class="mb-3">
+                                        <label for="name-reg" class="form-label">Artist</label>
+                                        <input type="text" class="form-control" name="artist_name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tracks-reg" class="form-label">Tracks/Album Name</label>
+                                        <input type="text" class="form-control" name="tracks_album_name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlSelect2">Choose type</label>
+                                        <select multiple class="form-select" type="tracks_album_name_type" id="multiple-select-field" name="tracks_album_name_type" data-placeholder="Choose anything">
+                                            <option>track</option>
+                                            <!-- <option>album</option> -->
+                                        </select>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container mt-4" id="playlistContainer">
+                        <!-- Il contenuto esistente rimane invariato -->
+                    </div>
+                    <div class="container mt-4 playlist-container" id="userPlaylist">
+                        <ul id="playlistList" class="list-group">
+                            <!-- La lista delle playlist verrà inserita qui -->
+                        </ul>
+                        <div class="mb-3">
+                            <label for="name-reg" class="form-label">Choose a playlist name</label>
+                            <input type="text" class="form-control" name="name" id="playlistName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name-reg" class="form-label">Choose a playlist tag</label>
+                            <input name='tags' value='Queen,ACDC' class="form-control" id="playlistTags" autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                            <textarea class="form-control" rows="3" id="playlist_description"></textarea>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="public_playlist3" name="public_playlist3">
+                            <label class="form-check-label" for="gridCheck" >
+                                Make your playlist public ?
+                            </label>
+                        </div>
+                        <input type="hidden" name="public_playlist" id="checkboxValue1">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button onclick="savePlaylist()" class="btn btn-primary">Save Playlist</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="results">
+        <!-- Results will be displayed here -->
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal2Label">Create Playlist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container mt-4">
+                        <div class="card" style="width: 65rem;">
+                            <div class="card-header">Search tracks</div>
+                            <div class="card-body">
+                                <form id="searchForm2">
+                                    <div class="mb-3">
+                                        <label for="name-reg" class="form-label">Artist</label>
+                                        <input type="text" class="form-control" name="artist_name2">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="tracks-reg" class="form-label">Tracks/Album Name</label>
+                                        <input type="text" class="form-control" name="tracks_album_name2">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlSelect2">Choose type</label>
+                                        <select multiple class="form-select" type="tracks_album_name_type" id="multiple-select-field2" name="tracks_album_name_type2" data-placeholder="Choose anything">
+                                            <option>track</option>
+                                            <!-- <option>album</option> -->
+                                        </select>
+                                    </div>
+
+                                    <!-- Nuovo campo select da aggiungere -->
+                                    <div class="mb-3">
+                                        <label for="playlistSelect">Choose Playlist</label>
+                                        <select class="form-select" id="playlistSelect" name="playlistSelect" data-placeholder="Choose Playlist"></select>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" onclick="submitForm2()">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container mt-4" id="playlistContainer2">
+                        <!-- Il contenuto esistente rimane invariato -->
+                    </div>
+                    <div class="container mt-4 playlist-container" id="userPlaylist2">
+                        <ul id="playlistList" class="list-group">
+                            <!-- La lista delle playlist verrà inserita qui -->
+                        </ul>
+                    </div>
+
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Aggiornamento Playlist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form per la modifica della playlist -->
+                    <form id="playlistForm">
+                        <div class="mb-3">
+                            <label for="playlistNameEdit" class="form-label">Nome della playlist</label>
+                            <input type="text" class="form-control" id="playlistNameEdit" name="playlistNameEdit" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="playlistTagsEdit" class="form-label">Tags</label>
+                            <input type="text" class="form-control" id="playlistTagsEdit" name="playlistTagsEdit" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="playlistDescription" class="form-label">Descrizione</label>
+                            <textarea class="form-control" id="playlistDescription" name="playlistDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="publicPlaylist" name="publicPlaylist">
+                            <label class="form-check-label" for="publicPlaylist">Playlist Pubblica</label>
+                        </div>
+                        <div class="mb-3">
+                            <h5>Tracks</h5>
+                            <ul id="playlistTracksList" class="list-group">
+                                <!-- La lista delle tracce sarà popolata dinamicamente qui -->
+                            </ul>
+                        </div>
+
+                        <!-- Aggiungi altri campi del form se necessario -->
+
+                        <!-- Pulsante di salvataggio del form -->
+                        <button type="button" class="btn btn-primary" id="saveChangesButton">Salva modifiche</button>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                    <!-- Aggiungi altri pulsanti o azioni qui se necessario -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/@yaireo/tagify"></script>
+<script src="https://unpkg.com/@yaireo/tagify@3.1.0/dist/tagify.polyfills.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+<script>
+    // The DOM element you wish to replace with Tagify
+    var input = document.querySelector('input[name=tags]');
+
+    // initialize Tagify on the above input node reference
+    new Tagify(input, {
+        originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+    })
+</script>
+<script>
+    $( '#multiple-select-field' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+        closeOnSelect: false,
+    } );
+</script>
+<script>
+    $( '#multiple-select-field2' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+        closeOnSelect: false,
+    } );
+</script>
+<script>
+    // Funzione per convertire i millisecondi in minuti
+    function convertiMsInMinuti(ms) {
+        var minuti = Math.floor(ms / 60000);  // 1 minuto = 60000 millisecondi
+        return minuti + ' min';
+    }
+
+    function getCookieValue(cookieName) {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Controlla se il cookie inizia con il nome specificato
+            if (cookie.startsWith(cookieName + '=')) {
+                // Estrai e restituisci il valore del cookie
+                return cookie.substring(cookieName.length + 1);
+            }
+        }
+        // Restituisci null se il cookie non è stato trovato
+        return null;
+    }
+    // Funzione per inizializzare la playlist nel localStorage se non esiste
+    function initializePlaylist() {
+        if (!localStorage.getItem('userPlaylist')) {
+            localStorage.setItem('userPlaylist', JSON.stringify([]));
+        }
+    }
+
+    // Funzione per aggiungere una canzone alla playlist
+    function addToPlaylist(track) {
+        const userPlaylist = JSON.parse(localStorage.getItem('userPlaylist'));
+        userPlaylist.push(track);
+        localStorage.setItem('userPlaylist', JSON.stringify(userPlaylist));
+        renderPlaylist();
+
+        // Rimuovi la card dalla lista
+        removeCardFromList(track);
+    }
+
+    // Funzione per rimuovere la card dalla lista in base alla traccia
+    function removeCardFromList(track) {
+        const playlistContainer = document.getElementById('playlistContainer');
+        const cards = playlistContainer.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.remove();
+        });
+    }
+
+    // Funzione per visualizzare la playlist
+    function renderPlaylist() {
+        const playlistList = document.getElementById('playlistList');
+        playlistList.innerHTML = '';
+
+        const userPlaylist = JSON.parse(localStorage.getItem('userPlaylist'));
+        userPlaylist.forEach((track, index) => {
+            const listItem = document.createElement('li');
+            listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+            listItem.innerHTML = `${track.artist} | ${track.name} ~ ${convertiMsInMinuti(track.duration_ms)}`;
+
+            const removeButton = document.createElement('button');
+            removeButton.className = 'btn btn-danger btn-sm';
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = () => removeFromPlaylist(index);
+            listItem.appendChild(removeButton);
+
+            playlistList.appendChild(listItem);
+        });
+    }
+
+    // Funzione per rimuovere una canzone dalla playlist
+    function removeFromPlaylist(index) {
+        const userPlaylist = JSON.parse(localStorage.getItem('userPlaylist'));
+        userPlaylist.splice(index, 1);
+        localStorage.setItem('userPlaylist', JSON.stringify(userPlaylist));
+        renderPlaylist();
+    }
+
+    function clearData() {
+        // Pulisci i campi del form
+        document.getElementById('playlistName').value = '';
+        document.getElementById('playlistTags').value = '';
+        document.getElementById('playlist_description').value = '';
+
+        // Pulisci il localStorage
+        localStorage.clear();
+    }
+
+
+    // Funzione per salvare la playlist
+    function savePlaylist() {
+        const playlistName = document.getElementById('playlistName').value;
+        const playlistTags = document.getElementById('playlistTags').value;
+        const playlistDescription = document.getElementById('playlist_description').value;
+        const userPlaylist = JSON.parse(localStorage.getItem('userPlaylist'));
+        var hiddenInput1 = document.getElementById('checkboxValue1');
+        const userEmail = decodeURIComponent(getCookieValue('email'));
+
+        console.log('Playlist Name:', playlistName);
+        console.log('Playlist Tags:', playlistTags);
+        console.log('Playlist Description:', playlistDescription);
+        console.log('Is Public:', hiddenInput1.value);
+        console.log('Tracks:', userPlaylist);
+        console.log(decodeURIComponent(getCookieValue('email')))
+        // Puoi implementare l'invio al server o altre logiche di salvataggio qui
+
+        // Crea un oggetto con i dati da inviare
+        const dataToSend = {
+            name: playlistName,
+            tags: playlistTags,
+            description: playlistDescription,
+            tracks: userPlaylist,
+            public_playlist: hiddenInput1.value,
+            user_email: userEmail
+        };
+
+        console.log(JSON.stringify(dataToSend))
+
+        // Effettua la richiesta POST utilizzando fetch
+        fetch('http://localhost:3000/playlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Specifica il tipo di contenuto JSON
+                // Altri eventuali header richiesti dal tuo server
+            },
+            body: JSON.stringify(dataToSend) // Converte l'oggetto in una stringa JSON
+        })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nella richiesta POST:', response.status);
+                    }
+                    return response.json(); // Se la risposta contiene dati JSON
+                })
+                .then(data => {
+                    // Gestisci la risposta del server qui
+                    //ID delle playlist inserita
+                    console.log('Risposta del server:', data.playlistId);
+
+                    const playlist_array = []
+                    playlist_array.push(data.playlistId)
+                    console.log("ARRAYYYYYYYYYYYYYYYYYYYYYYYYYY: "+playlist_array)
+
+                    //ID dell'utente
+                    user_id_cookie = decodeURIComponent(getCookieValue('id_app'));
+                    jsonValue  = user_id_cookie.replace(/^j:/, '');
+                    const parsedValue = JSON.parse(jsonValue);
+                    console.log(parsedValue)
+
+                    const url = 'http://localhost:3000/user/' + parsedValue
+
+                    fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json', // Specifica il tipo di contenuto JSON
+                            // Altri eventuali header richiesti dal tuo server
+                        }
+                    })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Errore nella richiesta GET:', response.status);
+                                }
+                                return response.json(); // Se la risposta contiene dati JSON
+                            })
+                            .then(data => {
+                                console.log('Risposta del server:', data.playlist);
+                                const old_playlist_array = Array.isArray(data.playlist) ? data.playlist : [];
+
+                                const new_playlist_array = playlist_array.concat(old_playlist_array)
+                                console.log("ARRAYYYYYYYYYYYYYYYYYYYYYYYYYY: "+new_playlist_array)
+
+                                const dataToSend = {
+                                    playlist: new_playlist_array
+                                };
+
+                                console.log("Data to send: " + JSON.stringify(dataToSend))
+                                const url = 'http://localhost:3000/user/id/' + parsedValue
+
+                                fetch(url, {
+                                    method: 'PATCH',
+                                    headers: {
+                                        'Content-Type': 'application/json', // Specifica il tipo di contenuto JSON
+                                        // Altri eventuali header richiesti dal tuo server
+                                    },
+                                    body: JSON.stringify(dataToSend) // Converte l'oggetto in una stringa JSON
+                                })
+                                        .then(response => {
+                                            if (!response.ok) {
+                                                throw new Error('Errore nella richiesta PATCH:', response.status);
+                                            }
+                                            return response.json(); // Se la risposta contiene dati JSON
+                                        })
+                                        .then(data => {
+                                            console.log('Risposta del server:', data);
+                                            alert('Playlist saved!');
+                                            // Pulisce tutto il contenuto del localStorage
+                                            clearData();
+                                        })
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                            })
+                            .catch(error => {
+                                console.error(error);
+                            });
+
+                })
+                .catch(error => {
+                    // Gestisci eventuali errori
+                    console.error(error);
+                });
+    }
+
+    // Resto del tuo codice...
+
+    // Inizializza la playlist al caricamento della pagina
+    initializePlaylist();
+    // Esegui la renderPlaylist all'avvio
+    renderPlaylist();
+</script>
+<script>
+    function getTokenAndMakeGetRequest(url) {
+        // Step 1: Effettua la richiesta POST per ottenere il token di accesso
+        var body_data= 'grant_type=client_credentials&client_id='+getCookieValue('spotify_client_id')+'&client_secret='+getCookieValue('spotify_client_secret');
+        console.log(body_data)
+        fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: body_data,
+        })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nella richiesta di token:', response.status);
+                    }
+                    return response.json();
+                })
+                .then(tokenData => {
+                    // Step 2: Esegui la richiesta GET con il token di accesso ottenuto
+                    return fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + tokenData.access_token,
+                        },
+                    });
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nella richiesta GET:', response.status);
+                    }
+                    // Consuma il corpo della risposta e restituisci una promessa JSON
+                    return response.json();
+                })
+                .then(data => {
+                    // Gestisci i dati di risposta della richiesta GET qui
+                    onDataReceived(data);
+                })
+                .catch(error => {
+                    // Gestisci eventuali errori
+                    console.error(error);
+                });
+    }
+
+    function onDataReceived(data) {
+        // Ottieni il riferimento all'elemento del contenitore della playlist
+        var playlistContainer = document.getElementById('playlistContainer');
+
+        // Creazione di una row Bootstrap
+        var row = document.createElement('div');
+        row.className = 'row';
+        console.log(data.tracks.items)
+        // Creazione di cards Bootstrap per ogni traccia nella risposta della richiesta GET
+        data.tracks.items.forEach(function(track, index) {
+            // Creazione di una col Bootstrap per ciascuna card
+            var col = document.createElement('div');
+            col.className = 'col-3';
+
+            // Creazione della card Bootstrap
+            var card = document.createElement('div');
+            card.className = 'card';
+            card.style.width = '18rem';
+
+            // Aggiungi l'immagine all'interno della card
+            var trackImage = document.createElement('img');
+            trackImage.src = track.album.images[0].url; // L'URL dell'immagine si trova in track.album.images[0].url
+            trackImage.alt = track.name;
+            trackImage.className = 'card-img-top';
+            card.appendChild(trackImage);
+
+            // Creazione del corpo della card
+            var cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            // Aggiungi il titolo della traccia all'interno del corpo della card
+            var trackTitle = document.createElement('h5');
+            trackTitle.className = 'card-title';
+            trackTitle.textContent = track.name;
+            cardBody.appendChild(trackTitle);
+
+            // Aggiungi durata della traccia all'interno del corpo della card
+            var trackDuration = document.createElement('p');
+            trackDuration.className = 'card-title';
+            trackDuration.textContent = convertiMsInMinuti(track.duration_ms);
+            cardBody.appendChild(trackDuration);
+
+            // Aggiungi un link cliccabile all'URL della canzone all'interno del corpo della card
+            var trackLink = document.createElement('a');
+            trackLink.href = track.external_urls.spotify;
+            trackLink.textContent = 'Listen on Spotify';
+            trackLink.className = 'btn btn-primary';
+            cardBody.appendChild(trackLink);
+
+            // Aggiungi il pulsante per aggiungere alla playlist
+            var addToPlaylistButton = document.createElement('button');
+            addToPlaylistButton.textContent = 'Add to Playlist';
+            addToPlaylistButton.className = 'btn btn-success';
+            addToPlaylistButton.onclick = function() {
+                addToPlaylist({
+                    artist: track.album.artists[0].name,
+                    name: track.name,
+                    img_url: track.album.images[0].url,
+                    spotify_url: track.external_urls.spotify,
+                    duration_ms: track.duration_ms
+                });
+            };
+            cardBody.appendChild(addToPlaylistButton);
+
+            // Aggiungi il corpo della card alla card stessa
+            card.appendChild(cardBody);
+
+            // Aggiungi la card alla col
+            col.appendChild(card);
+
+            // Aggiungi la col alla row
+            row.appendChild(col);
+
+            // Se abbiamo raggiunto 4 cards, crea una nuova row
+            if ((index + 1) % 4 === 0) {
+                playlistContainer.appendChild(row);
+                // Creazione di una nuova row Bootstrap
+                row = document.createElement('div');
+                row.className = 'row';
+            }
+        });
+
+        // Se ci sono cards rimanenti, aggiungile alla row
+        if (row.children.length > 0) {
+            playlistContainer.appendChild(row);
+        }
+    }
+
+
+    // Chiamare la funzione per avviare il processo
+    function submitForm() {
+        const form = document.getElementById('searchForm');
+        const formData = new FormData(form);
+
+        // Ottenere valori specifici dal FormData
+        const artistName = formData.get('artist_name');
+        const tracksAlbumName = formData.get('tracks_album_name');
+        const selectedType = formData.getAll('tracks_album_name_type');
+
+        const url_encode = encodeURIComponent('artist:' + artistName + ' track:' + tracksAlbumName);
+        const url = 'https://api.spotify.com/v1/search?q=' + url_encode + '&type=' + selectedType + '&market=IT&include_external=audio';
+
+        getTokenAndMakeGetRequest(url);
+    }
+
+    function getTokenAndMakeGetRequest2(url) {
+        // Step 1: Effettua la richiesta POST per ottenere il token di accesso
+        var body_data= 'grant_type=client_credentials&client_id='+getCookieValue('spotify_client_id')+'&client_secret='+getCookieValue('spotify_client_secret');
+        console.log(body_data)
+        fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: body_data,
+        })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nella richiesta di token:', response.status);
+                    }
+                    return response.json();
+                })
+                .then(tokenData => {
+                    // Step 2: Esegui la richiesta GET con il token di accesso ottenuto
+                    return fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + tokenData.access_token,
+                        },
+                    });
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Errore nella richiesta GET:', response.status);
+                    }
+                    // Consuma il corpo della risposta e restituisci una promessa JSON
+                    return response.json();
+                })
+                .then(data => {
+                    // Gestisci i dati di risposta della richiesta GET qui
+                    onDataReceived2(data);
+                })
+                .catch(error => {
+                    // Gestisci eventuali errori
+                    console.error(error);
+                });
+    }
+
+    function onDataReceived2(data) {
+        // Ottieni il riferimento all'elemento del contenitore della playlist
+        var playlistContainer = document.getElementById('playlistContainer2');
+
+        // Creazione di una row Bootstrap
+        var row = document.createElement('div');
+        row.className = 'row';
+        console.log(data.tracks.items)
+        // Creazione di cards Bootstrap per ogni traccia nella risposta della richiesta GET
+        data.tracks.items.forEach(function(track, index) {
+            // Creazione di una col Bootstrap per ciascuna card
+            var col = document.createElement('div');
+            col.className = 'col-3';
+
+            // Creazione della card Bootstrap
+            var card = document.createElement('div');
+            card.className = 'card';
+            card.style.width = '18rem';
+
+            // Aggiungi l'immagine all'interno della card
+            var trackImage = document.createElement('img');
+            trackImage.src = track.album.images[0].url; // L'URL dell'immagine si trova in track.album.images[0].url
+            trackImage.alt = track.name;
+            trackImage.className = 'card-img-top';
+            card.appendChild(trackImage);
+
+            // Creazione del corpo della card
+            var cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            // Aggiungi il titolo della traccia all'interno del corpo della card
+            var trackTitle = document.createElement('h5');
+            trackTitle.className = 'card-title';
+            trackTitle.textContent = track.name;
+            cardBody.appendChild(trackTitle);
+
+            // Aggiungi durata della traccia all'interno del corpo della card
+            var trackDuration = document.createElement('p');
+            trackDuration.className = 'card-title';
+            trackDuration.textContent = convertiMsInMinuti(track.duration_ms);
+            cardBody.appendChild(trackDuration);
+
+            // Aggiungi un link cliccabile all'URL della canzone all'interno del corpo della card
+            var trackLink = document.createElement('a');
+            trackLink.href = track.external_urls.spotify;
+            trackLink.textContent = 'Listen on Spotify';
+            trackLink.className = 'btn btn-primary';
+            cardBody.appendChild(trackLink);
+
+            // Aggiungi il pulsante per aggiungere alla playlist
+            var addToPlaylistButton = document.createElement('button');
+            addToPlaylistButton.textContent = 'Add to Playlist';
+            addToPlaylistButton.className = 'btn btn-success';
+            addToPlaylistButton.onclick = async function(){
+
+                // Raccogli i nuovi dati dai campi del form
+                const newPlaylistData = {
+                    tracks: [
+                        {
+                            artist: track.album.artists[0].name,
+                            name: track.name,
+                            img_url: track.album.images[0].url,
+                            spotify_url: track.external_urls.spotify,
+                            duration_ms: track.duration_ms
+                        }
+                    ]
+                };
+
+                console.log(newPlaylistData)
+                try {
+                    // Effettua la richiesta PUT con i nuovi dati
+                    const putResponse = await fetch(`http://localhost:3000/playlist/update/${selectedPlaylistId}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(newPlaylistData),
+                    });
+
+                    // Verifica la risposta della richiesta PUT
+                    if (putResponse.ok) {
+                        console.log('Playlist aggiornata con successo!');
+                        // Puoi chiudere la modal o eseguire altre azioni dopo l'aggiornamento
+                        alert('Playlist aggiornata con successo!');
+                        // Chiudi la modalità dopo l'alert
+                        var myModal = new bootstrap.Modal(document.getElementById("exampleModal2"));
+                        myModal.hide();
+                    } else {
+                        console.error('Errore durante l\'aggiornamento della playlist:', putResponse.statusText);
+                    }
+                } catch (error) {
+                    console.error('Errore durante la richiesta PUT:', error);
+                }
+            };
+            cardBody.appendChild(addToPlaylistButton);
+
+            // Aggiungi il corpo della card alla card stessa
+            card.appendChild(cardBody);
+
+            // Aggiungi la card alla col
+            col.appendChild(card);
+
+            // Aggiungi la col alla row
+            row.appendChild(col);
+
+            // Se abbiamo raggiunto 4 cards, crea una nuova row
+            if ((index + 1) % 4 === 0) {
+                playlistContainer.appendChild(row);
+                // Creazione di una nuova row Bootstrap
+                row = document.createElement('div');
+                row.className = 'row';
+            }
+        });
+
+        // Se ci sono cards rimanenti, aggiungile alla row
+        if (row.children.length > 0) {
+            playlistContainer.appendChild(row);
+        }
+    }
+
+    // Chiamare la funzione per avviare il processo
+    function submitForm2() {
+        const form = document.getElementById('searchForm2');
+        const formData = new FormData(form);
+
+        // Ottenere valori specifici dal FormData
+        const artistName = formData.get('artist_name2');
+        const tracksAlbumName = formData.get('tracks_album_name2');
+        const selectedType = formData.getAll('tracks_album_name_type2');
+
+        const url_encode = encodeURIComponent('artist:' + artistName + ' track:' + tracksAlbumName);
+        const url = 'https://api.spotify.com/v1/search?q=' + url_encode + '&type=' + selectedType + '&market=IT&include_external=audio';
+
+        getTokenAndMakeGetRequest2(url);
+    }
+
+
+</script>
+<script>
+    // Ottieni riferenza all'elemento checkbox
+    var checkbox = document.getElementById('public_playlist3');
+    var hiddenInput1 = document.getElementById('checkboxValue1');
+    // Ascolta l'evento di cambio sulla checkbox
+    checkbox.addEventListener('change', function() {
+        // Salva lo stato della checkbox (true se è spuntata, false altrimenti)
+        var isChecked = checkbox.checked;
+
+        // Puoi fare qualcosa con lo stato, ad esempio stamparlo nella console
+        console.log('Stato della checkbox:', isChecked);
+        // Salva lo stato della checkbox (true se è spuntata, false altrimenti)
+        hiddenInput1.value = checkbox.checked.toString();
+    });
+</script>
+
+<script>
+    async function fetchPlaylistData() {
+        user_id_cookie = decodeURIComponent(getCookieValue('id_app'));
+        jsonValue = user_id_cookie.replace(/^j:/, '');
+        const parsedValue = JSON.parse(jsonValue);
+
+        const userApiUrl = 'http://localhost:3000/user/' + parsedValue;
+
+        try {
+            const userResponse = await fetch(userApiUrl);
+            if (!userResponse.ok) {
+                throw new Error(`HTTP error! Status: ${userResponse.status}`);
+            }
+
+            const userData = await userResponse.json();
+            const playlistIds = Array.isArray(userData.playlist) ? userData.playlist : [];
+
+            const apiUrlBase = 'http://localhost:3000/playlist/id/';
+
+            const playlistDataPromises = playlistIds.map(async (playlistId) => {
+                const apiUrl = apiUrlBase + playlistId;
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Verifica se la risposta contiene dati JSON
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    console.log(data);
+                    return data; // Restituisci direttamente i dati della playlist
+                } else {
+                    console.error('Invalid JSON response');
+                    return null; // Oppure gestisci il caso in cui la risposta non è JSON
+                }
+            });
+
+            const playlistDataArray = await Promise.all(playlistDataPromises);
+
+            console.log(playlistDataArray);
+            return playlistDataArray.filter(Boolean); // Rimuovi eventuali elementi null dall'array
+        } catch (error) {
+            console.error('Fetch error:', error);
+            return [];
+        }
+    }
+
+
+
+    async function initPage() {
+        const playlists = await fetchPlaylistData();
+        displayResults(playlists);
+    }
+
+    document.addEventListener('DOMContentLoaded', initPage);
+
+    const resultsContainer = document.getElementById('results');
+
+    function displayResults(results) {
+        resultsContainer.innerHTML = '';
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No matching playlists found.</p>';
+        } else {
+            results.forEach(playlist => {
+                const card = document.createElement('div');
+                card.className = 'card mt-3';
+
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+
+                const cardTitle = document.createElement('h5');
+                cardTitle.className = 'card-title';
+                cardTitle.textContent = playlist.name;
+
+                const tagList = document.createElement('p');
+                tagList.className = 'card-text';
+                tagList.innerHTML = `<strong>Tags:</strong> ${playlist.tags}`;
+
+                const descriptionPlaylist = document.createElement('p');
+                descriptionPlaylist.className = 'card-text';
+                descriptionPlaylist.innerHTML = `<strong>Description:</strong> ${playlist.description}`;
+
+                const songList = document.createElement('ul');
+                songList.className = 'list-group list-group-flush';
+
+                let totalDuration = 0;
+
+                playlist.tracks.forEach(track => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'list-group-item';
+
+                    const songInfo = document.createElement('div');
+                    songInfo.innerHTML = `<strong>Artist:</strong> ${track.artist},
+                                             <strong>Song:</strong> ${track.name},
+                                             <strong>Duration:</strong> ${msToTime(track.duration_ms)}`;
+
+                    const spotifyImage = document.createElement('img');
+                    spotifyImage.src = track.img_url;
+                    spotifyImage.alt = 'Spotify Image';
+                    spotifyImage.style.width = '50px'; // Adjust the size as needed
+
+                    const spotifyLink = document.createElement('a');
+                    spotifyLink.href = track.spotify_url;
+                    spotifyLink.target = '_blank';
+                    spotifyLink.textContent = 'Listen on Spotify';
+
+                    listItem.appendChild(songInfo);
+                    listItem.appendChild(spotifyImage);
+                    listItem.appendChild(spotifyLink);
+
+                    songList.appendChild(listItem);
+
+                    // Aggiungi la durata al totale
+                    totalDuration += track.duration_ms;
+                });
+
+                const cardFooter = document.createElement('div');
+                cardFooter.className = 'card-footer';
+
+
+                const editButton = document.createElement('button');
+                editButton.className = 'btn btn-info';
+                editButton.textContent = 'Update';
+                editButton.dataset.playlistId = playlist._id;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-danger';
+                deleteButton.textContent = 'Delete';
+                deleteButton.dataset.playlistId = playlist._id;
+
+                // Aggiungi i pulsanti al footer della card
+                cardFooter.appendChild(editButton);
+                cardFooter.appendChild(deleteButton);
+                cardFooter.innerHTML += `<span class="float-right"><strong>Total Duration:</strong> ${msToTime(totalDuration)}</span>`;
+                cardBody.appendChild(cardTitle);
+                cardBody.appendChild(tagList);
+                cardBody.appendChild(descriptionPlaylist);
+                cardBody.appendChild(songList);
+
+                card.appendChild(cardBody);
+                card.appendChild(cardFooter);
+                resultsContainer.appendChild(card);
+            });
+        }
+    }
+
+    let currentPlaylistId
+
+    resultsContainer.addEventListener('click', (event) => {
+        const target = event.target;
+
+        // Verifica se il clic è avvenuto su un pulsante "Update" o "Delete"
+        if (target.classList.contains('btn-info')) {
+            const playlistId = target.dataset.playlistId;
+            console.log(`Update button clicked for playlist with ID ${playlistId}`);
+            updatePlaylist(playlistId);
+            currentPlaylistId = playlistId
+        } else if (target.classList.contains('btn-danger')) {
+            const playlistId = target.dataset.playlistId;
+            console.log(`Delete button clicked for playlist with ID ${playlistId}`);
+            deletePlaylist(playlistId);
+        }
+    });
+
+    // Funzione per gestire l'aggiornamento della playlist
+    async function updatePlaylist(playlistId) {
+        try {
+            // Effettua la chiamata API per ottenere i dati della playlist
+            const response = await fetch(`http://localhost:3000/playlist/id/${playlistId}`);
+            const playlistData = await response.json();
+            const tmp_playlistData = playlistData
+            console.log(tmp_playlistData)
+            console.log(JSON.stringify(tmp_playlistData))
+
+            // Trova gli elementi del form nella modal
+            const playlistNameInput = document.getElementById('playlistNameEdit');
+            const playlistTagsInput = document.getElementById('playlistTagsEdit');
+            const playlistDescriptionInput = document.getElementById('playlistDescription');
+            const publicPlaylistCheckbox = document.getElementById('publicPlaylist');
+
+            // Elemento HTML per la lista delle tracce
+            const playlistTracksList = document.getElementById('playlistTracksList');
+
+            // Pulisci la lista delle tracce
+            playlistTracksList.innerHTML = '';
+
+            // Popola i campi del form con i dati della playlist
+            playlistNameInput.value = playlistData.name;
+            playlistTagsInput.value = playlistData.tags;
+            playlistDescriptionInput.value = playlistData.description;
+
+            // Imposta lo stato della checkbox
+            publicPlaylistCheckbox.checked = playlistData.public_playlist === 'true';
+
+            // Popola la lista delle tracce
+            playlistData.tracks.forEach((track, index) => {
+             const listItem = document.createElement('li');
+             listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+             listItem.innerHTML = `
+             ${track.name} - ${track.artist}
+             <button type="button" class="btn btn-danger btn-sm" onclick="removeTrack(${index}, '${encodeURIComponent(JSON.stringify(tmp_playlistData))}')">Rimuovi</button>
+             `;
+             playlistTracksList.appendChild(listItem);
+             });
+
+
+
+            // Aprire la modal usando Bootstrap dopo aver popolato i campi del form
+            const modal = new bootstrap.Modal(document.getElementById('myModal'));
+            modal.show();
+
+            // Aggiungi un event listener al pulsante "Salva modifiche"
+            const saveChangesButton = document.getElementById('saveChangesButton');
+            saveChangesButton.addEventListener('click', async () => {
+                // Raccogli i nuovi dati dai campi del form
+                const newPlaylistData = {
+                    name: playlistNameInput.value,
+                    tags: playlistTagsInput.value,
+                    description: playlistDescriptionInput.value,
+                    public_playlist: publicPlaylistCheckbox.checked.toString(), // Converte il boolean in una stringa
+                    // Puoi aggiungere altri campi del form se necessario
+                };
+
+                try {
+                    // Effettua la richiesta PUT con i nuovi dati
+                    const putResponse = await fetch(`http://localhost:3000/playlist/${playlistId}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(newPlaylistData),
+                    });
+
+                    // Verifica la risposta della richiesta PUT
+                    if (putResponse.ok) {
+                        console.log('Playlist aggiornata con successo!');
+                        // Puoi chiudere la modal o eseguire altre azioni dopo l'aggiornamento
+                        modal.hide();
+                    } else {
+                        console.error('Errore durante l\'aggiornamento della playlist:', putResponse.statusText);
+                    }
+                } catch (error) {
+                    console.error('Errore durante la richiesta PUT:', error);
+                }
+            });
+
+            // Puoi implementare qui ulteriori logiche o aggiornamenti della playlist se necessario
+            console.log(`Updating playlist with ID ${playlistId}`);
+        } catch (error) {
+            console.error('Errore durante la chiamata API:', error);
+        }
+    }
+
+    // Funzione per rimuovere una traccia dalla playlist
+    function removeTrack(trackIndex,  encodedTmpPlaylistData) {
+        // Trova l'elemento della lista delle tracce
+        const playlistTracksList = document.getElementById('playlistTracksList');
+        const tmp_playlistData = JSON.parse(decodeURIComponent(encodedTmpPlaylistData));
+        console.log(tmp_playlistData.tracks)
+
+        // Rimuovi l'elemento della traccia con l'indice trackIndex
+        playlistTracksList.removeChild(playlistTracksList.childNodes[trackIndex]);
+
+        // Rimuovi la traccia dall'array JSON (tmp_playlistData)
+        tmp_playlistData.tracks.splice(trackIndex, 1);
+
+        console.log('JSON finale dopo la rimozione delle tracce:', tmp_playlistData.tracks);
+
+        // Puoi implementare qui la logica aggiuntiva per rimuovere la traccia lato server, se necessario
+        console.log(`Removing track at index ${trackIndex}`);
+
+        const patchUrl = `http://localhost:3000/playlist/${currentPlaylistId}`;
+
+        fetch(patchUrl, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                tracks: tmp_playlistData.tracks,
+            }),
+        })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Patch successful:', data);
+                })
+                .catch(error => {
+                    console.error('Patch failed:', error);
+                });
+
+    }
+
+    // Funzione per gestire la cancellazione della playlist
+    async function deletePlaylist(playlistId) {
+        try {
+            // Ottenere l'ID dell'utente dal cookie
+            const user_id_cookie = decodeURIComponent(getCookieValue('id_app'));
+            const jsonValue = user_id_cookie.replace(/^j:/, '');
+            const parsedValue = JSON.parse(jsonValue);
+
+            // Ottenere l'URL dell'utente
+            const userApiUrl = 'http://localhost:3000/user/id/' + parsedValue;
+
+            // Effettuare la richiesta per ottenere i dati dell'utente
+            const userResponse = await fetch(userApiUrl);
+            if (!userResponse.ok) {
+                throw new Error(`HTTP error! Status: ${userResponse.status}`);
+            }
+
+            // Ottenere i dati dell'utente
+            const userData = await userResponse.json();
+
+            // Rimuovere l'id della playlist dall'array
+            userData.playlist = userData.playlist.filter(id => id !== playlistId);
+
+            // Eseguire la patch con il nuovo array di playlist
+            const patchResponse = await fetch(userApiUrl, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    playlist: userData.playlist,
+                }),
+            });
+
+            if (patchResponse.ok) {
+                console.log(`Playlist with ID ${playlistId} deleted successfully.`);
+                window.location.reload();
+            } else {
+                console.error(`Failed to delete playlist with ID ${playlistId}. Status: ${patchResponse.status}`);
+            }
+        } catch (error) {
+            console.error('An error occurred while deleting the playlist:', error);
+        }
+    }
+    var isPlaylistSelectPopulated = false;  // Variabile per tracciare lo stato di popolamento
+    var selectedPlaylistId = null;  // Variabile per memorizzare l'ID della playlist selezionata
+
+    // Funzione per popolare il campo select con i risultati della richiesta GET
+    function populatePlaylistSelect() {
+        if (isPlaylistSelectPopulated) {
+            return;  // Se già popolato, esce dalla funzione
+        }
+
+        var select = document.getElementById("playlistSelect");
+        var addedPlaylistIds = [];  // Array per tenere traccia degli ID delle playlist aggiunte
+
+        user_id_cookie = decodeURIComponent(getCookieValue('id_app'));
+        jsonValue = user_id_cookie.replace(/^j:/, '');
+        const parsedValue = JSON.parse(jsonValue);
+
+        // Effettua la prima richiesta GET
+        fetch("http://localhost:3000/user/" + parsedValue)
+                .then(response => response.json())
+                .then(data => {
+                    // Aggiorna le opzioni del campo select
+                    console.log(data);
+                    data.playlist.forEach(playlistId => {
+                        // Verifica se l'ID della playlist è già stato aggiunto
+                        if (!addedPlaylistIds.includes(playlistId)) {
+                            // Effettua la seconda richiesta GET per ottenere i dettagli della playlist
+                            fetch(`http://localhost:3000/playlist/id/${playlistId}`)
+                                    .then(response => response.json())
+                                    .then(playlistData => {
+                                        // Aggiungi l'opzione al campo select
+                                        var option = document.createElement("option");
+                                        option.value = playlistData._id;
+                                        option.text = playlistData.name;
+                                        select.add(option);
+
+                                        // Aggiungi l'ID della playlist all'array
+                                        addedPlaylistIds.push(playlistId);
+                                    })
+                                    .catch(error => console.error("Error fetching playlist details:", error));
+                        }
+                    });
+                })
+                .catch(error => console.error("Error fetching user data:", error));
+
+        // Aggiungi un gestore di eventi per l'evento di cambio del campo select
+        select.addEventListener("change", function() {
+            // Ottieni l'ID della playlist selezionata
+            selectedPlaylistId = select.value;
+            console.log("Playlist selezionata:", selectedPlaylistId);
+
+            // Chiamare la tua altra funzione qui, passando selectedPlaylistId come parametro se necessario
+            // es: myOtherFunction(selectedPlaylistId);
+        });
+
+        isPlaylistSelectPopulated = true;
+    }
+
+
+
+
+    // Ottenere l'elemento della modalità
+    var modalElement = document.getElementById("exampleModal2");
+
+    // Aggiungere l'ascoltatore di evento all'apertura della modalità
+    modalElement.addEventListener("show.bs.modal", function () {
+        populatePlaylistSelect();
+    });
+
+
+
+    function msToTime(duration) {
+        const minutes = Math.floor((duration / (1000 * 60)) % 60);
+        const seconds = Math.floor((duration / 1000) % 60);
+        return `${minutes}m ${seconds}s`;
+    }
+</script>
