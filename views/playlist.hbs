@@ -6,7 +6,6 @@
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
         Add Tracks to Playlist
     </button>
-
     <div id="results">
         <!-- Results will be displayed here -->
     </div>
@@ -924,9 +923,22 @@
                 deleteButton.textContent = 'Delete';
                 deleteButton.dataset.playlistId = playlist._id;
 
+                // Aggiungi il tag (pubblico o privato) al footer della card
+                const publicStatus = document.createElement('span');
+                publicStatus.className = 'badge badge-secondary';
+
+                if (playlist.public_playlist === 'true') {
+                    publicStatus.textContent = 'Public';
+                    publicStatus.style.backgroundColor = 'green'; // Puoi personalizzare i colori
+                } else {
+                    publicStatus.textContent = 'Private';
+                    publicStatus.style.backgroundColor = 'red'; // Puoi personalizzare i colori
+                }
+
                 // Aggiungi i pulsanti al footer della card
                 cardFooter.appendChild(editButton);
                 cardFooter.appendChild(deleteButton);
+                cardFooter.innerHTML += `<span><strong>Playlist type:</strong> ${publicStatus.outerHTML}</span>`;
                 cardFooter.innerHTML += `<span class="float-right"><strong>Total Duration:</strong> ${msToTime(totalDuration)}</span>`;
                 cardBody.appendChild(cardTitle);
                 cardBody.appendChild(tagList);
