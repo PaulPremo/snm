@@ -929,10 +929,10 @@
 
                 if (playlist.public_playlist === 'true') {
                     publicStatus.textContent = 'Public';
-                    publicStatus.style.backgroundColor = 'green'; // Puoi personalizzare i colori
+                    publicStatus.style.backgroundColor = 'green'; // Colore per playlist pubblica
                 } else {
                     publicStatus.textContent = 'Private';
-                    publicStatus.style.backgroundColor = 'red'; // Puoi personalizzare i colori
+                    publicStatus.style.backgroundColor = 'red'; // Colore per playlist privata
                 }
 
                 // Aggiungi i pulsanti al footer della card
@@ -1026,7 +1026,7 @@
                     tags: playlistTagsInput.value,
                     description: playlistDescriptionInput.value,
                     public_playlist: publicPlaylistCheckbox.checked.toString(), // Converte il boolean in una stringa
-                    // Puoi aggiungere altri campi del form se necessario
+                    // Aggiungere campi del form se necessario
                 };
 
                 try {
@@ -1042,7 +1042,7 @@
                     // Verifica la risposta della richiesta PUT
                     if (putResponse.ok) {
                         console.log('Playlist aggiornata con successo!');
-                        // Puoi chiudere la modal o eseguire altre azioni dopo l'aggiornamento
+                        // Chiudere la modal o eseguire altre azioni dopo l'aggiornamento
                         modal.hide();
                     } else {
                         console.error('Errore durante l\'aggiornamento della playlist:', putResponse.statusText);
@@ -1052,7 +1052,7 @@
                 }
             });
 
-            // Puoi implementare qui ulteriori logiche o aggiornamenti della playlist se necessario
+            // Implementare qui ulteriori logiche o aggiornamenti della playlist se necessario
             console.log(`Updating playlist with ID ${playlistId}`);
         } catch (error) {
             console.error('Errore durante la chiamata API:', error);
@@ -1074,7 +1074,7 @@
 
         console.log('JSON finale dopo la rimozione delle tracce:', tmp_playlistData.tracks);
 
-        // Puoi implementare qui la logica aggiuntiva per rimuovere la traccia lato server, se necessario
+        // Implementare qui la logica aggiuntiva per rimuovere la traccia lato server, se necessario
         console.log(`Removing track at index ${trackIndex}`);
 
         const patchUrl = `http://localhost:3000/playlist/${currentPlaylistId}`;
