@@ -76,7 +76,7 @@ const authenticateToken = (req, res, next) => {
     const decoded = verifyToken(token);
     if (!decoded) return res.redirect('/');
 
-    // Puoi anche aggiungere il payload JWT all'oggetto della richiesta per usarlo nelle route successive
+    // E' possibile aggiungere il payload JWT all'oggetto della richiesta per usarlo nelle route successive
     req.user = decoded;
 
     next();
@@ -86,14 +86,14 @@ const authenticateToken = (req, res, next) => {
 app.use('/protected', authenticateToken);
 
 app.get("/protected/profilo", (req, res) => {
-    // Puoi accedere all'utente autenticato tramite req.user
+    // E' possibile accedere all'utente autenticato tramite req.user
     const userCookie = req.cookies;
     const userData = userCookie ? userCookie : null;
     res.render("profilo", {layout: 'index_auth', title: 'Profile Page', user: userData});
 });
 
 app.get("/protected/playlist", (req, res) => {
-    // Puoi accedere all'utente autenticato tramite req.user
+    // E' possibile accedere all'utente autenticato tramite req.user
     const userCookie = req.cookies;
     const userData = userCookie ? userCookie : null;
     res.render("playlist", {layout: 'index_auth', title: 'Playlist Page', user: userData});
@@ -108,7 +108,7 @@ app.get("/protected/playlist", (req, res) => {
  *         // Estrai i dati dalla risposta API
  *         const playlistData = apiResponse.data;
  *         console.log(playlistData)
- *         // Puoi accedere all'utente autenticato tramite req.user
+ *         // E' possibile accedere all'utente autenticato tramite req.user
  *         const userCookie = req.cookies;
  *         const userData = userCookie ? userCookie : null;
  *
@@ -200,11 +200,10 @@ app.post("/auth/register", async (req, res) => {
         const result = await usersCollection.insertOne(newUser);
 
         // Puoi restituire una risposta di successo
-        /**
-         *         res.render('register', {
-         *             message: 'Registrazione avvenuta con successo'
-         *         })
-         */
+        
+                  res.render('register', {
+                      message: 'Registrazione avvenuta con successo'
+                  })
 
         return res.redirect('/login');
     } catch (error) {
