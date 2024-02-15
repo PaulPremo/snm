@@ -18,5 +18,5 @@ networks:
   mongodb-network:
 
 volumes:
-  mongodb_data:   # Definizione del volume per la persistenza dei dati del database
+  mongodb_data:   # Definizione del volume per la persistenza dei dati
 
