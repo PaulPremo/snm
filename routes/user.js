@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
         // Inserimento del nuovo utente nella collezione
         const result = await usersCollection.insertOne(newUser);
 
-        // Puoi restituire una risposta di successo
+        // Restituire una risposta di successo
         res.send(newUser);
     } catch (error) {
         console.error('Errore durante la registrazione:', error);
