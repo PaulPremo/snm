@@ -250,7 +250,7 @@ router.get('/id/:playlistId', async (req, res) => {
         // Esegui la query per ottenere la playlist con l'id specificato
         const playlist = await playlistCollection.findOne({ _id: new ObjectId(playlistId) });
 
-        // Puoi restituire una risposta di successo
+        // Restituire una risposta di successo
         res.send(playlist);
     } catch (error) {
         console.error('Errore:', error);
