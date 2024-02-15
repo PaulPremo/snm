@@ -11,6 +11,12 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb_data:/data/db   # Persistenza dei dati del database
 
 networks:
   mongodb-network:
+
+volumes:
+  mongodb_data:   # Definizione del volume per la persistenza dei dati del database
+
