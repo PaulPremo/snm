@@ -2,7 +2,6 @@ RELAZIONE DEL PROGETTO “SOCIAL NETWORK FOR MUSIC”
 
 . Autore: 	Paolo Premoli
 
-
 . Matricola: 	976266
 
 . Corso: 	Programmazione Web e Mobile 
@@ -206,4 +205,3 @@ I futuri sviluppi dell’app sono molteplici e potrebbero essere quelli di:
 2)	migliorare lo stile CSS delle varie pagine
 3)	migliorare i messaggi di errore
 4)	…
-![image](https://github.com/PaulPremo/snm/assets/38042499/118e0f88-857f-4c15-9672-1da95b90ab8f)
