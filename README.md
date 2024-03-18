@@ -45,6 +45,7 @@ JWT_SECRET=”Your_jwt_secret_key”
 
 . Aggiungere il file docker-compose.yml alla root della cartella [E’ possibile riferirsi al file docker-compose.yml di esempio qua in basso]
 
+`
 version: '3'
 services:
   		mongodb:
