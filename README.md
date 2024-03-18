@@ -4,6 +4,7 @@ RELAZIONE DEL PROGETTO “SOCIAL NETWORK FOR MUSIC”
 
 
 . Matricola: 	976266
+
 . Corso: 	Programmazione Web e Mobile 
 
 
@@ -31,11 +32,13 @@ npm install
 
 # Spotify API Configuration
 CLIENT_ID=”your_spotify_client_id”
+
 CLIENT_SECRET=” your_spotify_client_secret”
 # Port
 PORT=3000
 # MongoDB Configuration parameter
 URL_DB=mongodb://admin:password@localhost:27017
+
 DB_NAME=mydatabase
 # JWT Secret
 JWT_SECRET=”Your_jwt_secret_key”
