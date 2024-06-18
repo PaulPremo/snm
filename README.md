@@ -1,15 +1,10 @@
-RELAZIONE DEL PROGETTO “SOCIAL NETWORK FOR MUSIC”
 
 . Autore: 	Paolo Premoli
-
-. Matricola: 	976266
-
-. Corso: 	Programmazione Web e Mobile 
 
 
 1.PRESENTAZIONE DEL PROGETTO
 
-Come da specifica, il progetto si pone l’obbiettivo di sviluppare l’applicazione web “Social Network for Music” (SNM) che implementa un sito di gestione di playlist musicali.
+Il progetto si pone l’obbiettivo di sviluppare l’applicazione web “Social Network for Music” (SNM) che implementa un sito di gestione di playlist musicali.
 L’applicazione web gestisce il processo di gestione di più utenti che si collegano alla piattaforma, l’organizzazione di playlist musicali e la loro condivisione.
 E’ composto da tre macro-scenari principali:
 •	gestioni degli utenti
