@@ -1,32 +1,4 @@
 
-. Autore: 	Paolo Premoli
-
-
-1.PRESENTAZIONE DEL PROGETTO
-
-Il progetto si pone l’obbiettivo di sviluppare l’applicazione web “Social Network for Music” (SNM) che implementa un sito di gestione di playlist musicali.
-L’applicazione web gestisce il processo di gestione di più utenti che si collegano alla piattaforma, l’organizzazione di playlist musicali e la loro condivisione.
-E’ composto da tre macro-scenari principali:
-•	gestioni degli utenti
-•	gestione delle playlist
-•	gestione delle condivisioni
-
-2. PRE-REQUISITI INIZIALI
-
-. clonare il codice sorgente
-https://github.com/PaulPremo/snm.git
-
-. navigare all’interno della directory
-cd snm
- 
-. installare i node_modules
-npm install
-
-. Aggiungere il file .env alla root della cartella [E’ possibile riferirsi al file .env di esempio qua in basso]
-
-# Spotify API Configuration
-CLIENT_ID=”your_spotify_client_id”
-
 CLIENT_SECRET=” your_spotify_client_secret”
 # Port
 PORT=3000
