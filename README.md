@@ -1,4 +1,3 @@
-
 # Express.js Authentication and Profile App with MongoDB
 
 This is a basic web application built with Express.js, Handlebars for templating, and MongoDB for user data storage. It provides user registration, login, profile viewing, and basic protected routes.
