@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.22.2",
-    "express-handlebars": "^7.1.2",
+    "express-handlebars": "^9.0.1",
     "axios": "^1.16.0",
     "dotenv": "^16.3.1",
     "path": "^0.12.7",
